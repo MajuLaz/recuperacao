@@ -1,0 +1,892 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+%\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}  
+
+     
+\sloppy
+
+\title{Relatório RA2}
+
+\author{Maria Julia Prado Lazaroto}
+
+
+\address{PUCPR}
+
+\begin{document} 
+
+\maketitle
+
+\begin{resumo}
+  Hoje, discutiremos as características e importância das árvores, Mostrando tanto nas árvores binárias quanto nas árvores AVL. As árvores binárias são estruturas fundamentais, organizando dados de maneira hierárquica com cada nó contendo no máximo dois filhos. Elas desempenham um papel crucial em algoritmos de busca e ordenação. Por outro lado, as árvores AVL, além de serem binárias, são balanceadas, o que significa que mantêm uma distribuição equilibrada de alturas entre os ramos. Essa propriedade otimiza operações de busca e inserção, garantindo um desempenho eficiente.
+\end{resumo}
+
+
+\section{Árvore Binária}
+
+A árvore binária é uma estrutura na qual existem raíz e folhas. O nó superior é dado como raiz, enquanto os nós sem filhos são denominados folhas. Cada nó contém uma chave ou valor, e segue-se uma ordenação específica: valores menores são armazenados à esquerda, enquanto valores maiores ocupam a posição à direita. Essa organização facilita a implementação de algoritmos eficientes, como a busca binária, bem como operações de inserção e remoção.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 3  \\
+\hline
+100 & 1 \\
+\hline
+100 & 1 \\
+\hline
+100 & 0\\
+\hline
+100 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 1,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 1  \\
+\hline
+500 & 1 \\
+\hline
+500 & 1 \\
+\hline
+500 & 3\\
+\hline
+500 & 2 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 1,6 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 2  \\
+\hline
+1000 & 2 \\
+\hline
+1000 & 1 \\
+\hline
+1000 & 2\\
+\hline
+1000 & 3 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 3  \\
+\hline
+10000 & 3 \\
+\hline
+10000 & 2 \\
+\hline
+10000 & 2\\
+\hline
+10000 & 3 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 2,6 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 5  \\
+\hline
+20000 & 4 \\
+\hline
+20000 & 4 \\
+\hline
+20000 & 4\\
+\hline
+20000 & 4 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 4,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 0  \\
+\hline
+100 & 0 \\
+\hline
+100 & 0 \\
+\hline
+100 & 0\\
+\hline
+100 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 0 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 1  \\
+\hline
+500 & 0 \\
+\hline
+500 & 1 \\
+\hline
+500 & 1\\
+\hline
+500 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 0,6 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 0  \\
+\hline
+1000 & 1 \\
+\hline
+1000 & 1 \\
+\hline
+1000 & 1\\
+\hline
+1000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 0,8 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 1  \\
+\hline
+10000 & 1 \\
+\hline
+10000 & 1 \\
+\hline
+10000 & 1\\
+\hline
+10000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 1 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 1  \\
+\hline
+20000 & 2 \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1\\
+\hline
+20000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 1,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 0  \\
+\hline
+100 & 1 \\
+\hline
+100 & 0 \\
+\hline
+100 & 0\\
+\hline
+100 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 0,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 0  \\
+\hline
+500 & 1 \\
+\hline
+500 & 1 \\
+\hline
+500 & 0\\
+\hline
+500 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 0,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 1  \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0\\
+\hline
+1000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 0,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 0  \\
+\hline
+10000 & 0 \\
+\hline
+10000 & 0 \\
+\hline
+10000 & 1\\
+\hline
+10000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 0,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 1  \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1\\
+\hline
+20000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 1 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\newpage
+\mbox{~}
+\newpage
+\mbox{~}
+\newpage
+\mbox{~}
+\newpage\section{AVL}
+
+As árvores AVL sao parecidas com as árvores binárias, porém a AVL se preocupa com a altura da árvore e seu balanceamento. Quando um novo nó é inserido ou removido, a árvore AVL automaticamente realiza rotações e reorganizações para preservar seu equilíbrio. Esse mecanismo impede que a árvore se torne desproporcionalmente inclinada, garantindo um desempenho consistente em operações, mesmo à medida que a árvore é modificada ao longo do tempo.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 7  \\
+\hline
+100 & 10 \\
+\hline
+100 & 7 \\
+\hline
+100 & 6\\
+\hline
+100 & 7 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 7,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 89  \\
+\hline
+500 & 81 \\
+\hline
+500 & 93 \\
+\hline
+500 & 85\\
+\hline
+500 & 89 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 87,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 114  \\
+\hline
+1000 & 96 \\
+\hline
+1000 & 66 \\
+\hline
+1000 & 94\\
+\hline
+1000 & 69 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 87,8 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 1351  \\
+\hline
+10000 & 1381 \\
+\hline
+10000 & 1383 \\
+\hline
+10000 & 1373 \\
+\hline
+10000 & 1364 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 1.370,4 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Insercao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 4851  \\
+\hline
+20000 & 4756 \\
+\hline
+20000 & 4768 \\
+\hline
+20000 & 5121 \\
+\hline
+20000 & 4748 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 4.848,8 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 0  \\
+\hline
+100 & 0 \\
+\hline
+100 & 0 \\
+\hline
+100 & 0\\
+\hline
+100 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 0 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 0  \\
+\hline
+500 & 0 \\
+\hline
+500 & 0 \\
+\hline
+500 & 0\\
+\hline
+500 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 0 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 1  \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0\\
+\hline
+1000 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 0,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 0  \\
+\hline
+10000 & 0 \\
+\hline
+10000 & 0 \\
+\hline
+10000 & 1\\
+\hline
+10000 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 0,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Remocao} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 1  \\
+\hline
+20000 & 0 \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1\\
+\hline
+20000 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 0,6 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+100 & 0  \\
+\hline
+100 & 0 \\
+\hline
+100 & 0 \\
+\hline
+100 & 0\\
+\hline
+100 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+100 & 0 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+500 & 0  \\
+\hline
+500 & 0 \\
+\hline
+500 & 0 \\
+\hline
+500 & 0\\
+\hline
+500 & 0 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+500 & 0 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+1000 & 0  \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0 \\
+\hline
+1000 & 0\\
+\hline
+1000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+1000 & 0,2 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+10000 & 1  \\
+\hline
+10000 & 1 \\
+\hline
+10000 & 1 \\
+\hline
+10000 & 1\\
+\hline
+10000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+10000 & 1 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{Busca} \\
+\hline
+\begin{tabular}{|c|c|}
+\hline
+Elementos & Tempo \\
+\hline
+20000 & 1  \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1 \\
+\hline
+20000 & 1\\
+\hline
+20000 & 1 \\
+\hline
+\multicolumn{2}{|c|}{Média} \\
+\hline
+20000 & 1 \\
+\hline
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\newpage
+\mbox{~}
+\newpage
+\mbox{~}
+\newpage
+\mbox{~}
+\newpage\section{Conclusão}
+
+Embora as árvores AVL ofereçam vantagens significativas em termos de balanceamento automático e prevenção de desequilíbrios, elas podem apresentar um custo adicional em comparação com as árvores binárias em algumas operações. A manutenção do equilíbrio em uma árvore AVL implica verificações e, se necessário, rotações após cada inserção ou remoção, o que pode aumentar a complexidade e, consequentemente, o tempo de execução. A escolha entre árvores binárias e árvores AVL depende das características específicas do uso pretendido. Se as operações de modificação são raras e a ênfase recai sobre operações de leitura eficientes, uma árvore binária simples pode ser mais adequada. No entanto, em cenários dinâmicos onde as modificações são frequentes, e o equilíbrio é crucial para o desempenho, as árvores AVL continuam a ser uma escolha melhor.
+\end{document}
