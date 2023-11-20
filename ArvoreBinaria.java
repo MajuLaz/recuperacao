@@ -125,7 +125,7 @@ public class ArvoreBinaria {
         long tempoCriacao = System.currentTimeMillis();
 
         for (int i = 0; i < quantidade; i++) {
-            int numero = random.nextInt(quantidade * 2);
+            int numero = random.nextInt(quantidade);
             raiz = inserir(raiz, numero);
         }
 
